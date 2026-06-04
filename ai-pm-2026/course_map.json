@@ -1,0 +1,166 @@
+{
+  "title": "AI Product Management",
+  "author": "Rohit Swerashi",
+  "edition": "2026",
+  "_note": "Single source of truth for chapter/lesson TITLES and order. Lesson CONTENT lives in chapters/chNN.js. A lesson shows 'live' only when its content exists in a chapter file, else 'soon'. Keep ids identical between this file and chapter keys. 'through_line' is the one argument every lesson in a chapter must reinforce.",
+  "chapters": [
+    {
+      "n": "00",
+      "title": "Start Here",
+      "through_line": "This is a practical field guide to doing the AI PM job, not theory to memorize — read it, do the reps, and ship the proof.",
+      "lessons": [
+        {"id": "0.1", "t": "How to Use This Guide"}
+      ]
+    },
+    {
+      "n": "01",
+      "title": "AI System Design for PMs",
+      "through_line": "The model is rarely the bottleneck — retrieval, lever-choice, and unit economics are.",
+      "lessons": [
+        {"id": "1.1", "t": "What 'System Design' Means for an AI PM"},
+        {"id": "1.2", "t": "RAG, End to End — Why Retrieval Is the Bottleneck"},
+        {"id": "1.3", "t": "Prompt vs RAG vs Fine-tune: The Decision Tree"},
+        {"id": "1.4", "t": "Scaling, Latency, Cost & Failure Modes"}
+      ]
+    },
+    {
+      "n": "02",
+      "title": "Agentic Architecture for PMs",
+      "through_line": "Agency is a liability you add on purpose, not a feature you switch on.",
+      "lessons": [
+        {"id": "2.1", "t": "What an Agent Actually Is (Loop, Tools, Memory)"},
+        {"id": "2.2", "t": "Single-agent vs Multi-agent: When Each Wins"},
+        {"id": "2.3", "t": "Tool Use, MCP & the Orchestration Layer"}
+      ]
+    },
+    {
+      "n": "03",
+      "title": "How It Works Under the Hood (DSA & Data, the smart way)",
+      "through_line": "A data structure is a tradeoff that becomes a user-visible behavior — a miss, a lag, a stale or shallow answer.",
+      "lessons": [
+        {"id": "3.1", "t": "Search & Sort — Why Vector DBs Use Approximate, Not Exact"},
+        {"id": "3.2", "t": "Embeddings, Vector DBs & Indexes (PM-level)"},
+        {"id": "3.3", "t": "Trees, Graphs & Why They Matter for AI Products"}
+      ]
+    },
+    {
+      "n": "04",
+      "title": "Product Research for AI",
+      "through_line": "In an AI-saturated market the scarce thing is a real problem, not a model — find the workflow worth automating, not the demo worth tweeting.",
+      "lessons": [
+        {"id": "4.1", "t": "Finding the Right Problem in an AI-saturated Market"},
+        {"id": "4.2", "t": "User Research When the Product Is Probabilistic"},
+        {"id": "4.3", "t": "Sizing the AI Opportunity — Build, Wait, or Wrap"}
+      ]
+    },
+    {
+      "n": "05",
+      "title": "Product Analytics & AI Metrics",
+      "through_line": "DAU lies for AI products; you measure quality, cost-per-task, and trust, or you're flying blind.",
+      "lessons": [
+        {"id": "5.1", "t": "Beyond DAU: Evals, Quality, Cost-per-task"},
+        {"id": "5.2", "t": "Instrumenting an LLM Product"}
+      ]
+    },
+    {
+      "n": "06",
+      "title": "Product Planning & Prioritization",
+      "through_line": "You're roadmapping on shifting ground — plan around the model improving under you, not against a frozen spec.",
+      "lessons": [
+        {"id": "6.1", "t": "Roadmapping When the Model Keeps Changing"},
+        {"id": "6.2", "t": "Prioritizing AI Bets (RICE for Probabilistic Features)"},
+        {"id": "6.3", "t": "Managing Model-Dependency Risk"}
+      ]
+    },
+    {
+      "n": "07",
+      "title": "AI PRDs & Documentation",
+      "through_line": "A PRD for a probabilistic feature specifies the quality bar, the evals, and the failure behavior — not a list of deterministic requirements.",
+      "lessons": [
+        {"id": "7.1", "t": "Writing a PRD for a Non-deterministic Feature"},
+        {"id": "7.2", "t": "Speccing Evals & Acceptance Criteria"}
+      ]
+    },
+    {
+      "n": "08",
+      "title": "Cross-functional Communication",
+      "through_line": "Credibility with ML engineers comes from asking the right question, not from pretending to know the answer.",
+      "lessons": [
+        {"id": "8.1", "t": "Talking to ML Engineers Without Faking It"}
+      ]
+    },
+    {
+      "n": "09",
+      "title": "Prototyping & Vibe Coding",
+      "through_line": "In 2026 a PM who can ship a working demo in a day wins arguments that slides never could.",
+      "lessons": [
+        {"id": "9.1", "t": "The 2026 Prototyping Toolkit (v0, Lovable, Cursor, Claude)"},
+        {"id": "9.2", "t": "Build a Working AI Prototype, Start to Finish"},
+        {"id": "9.3", "t": "Prototype vs Production — Knowing the Line"}
+      ]
+    },
+    {
+      "n": "10",
+      "title": "Prompting as a PM Skill",
+      "through_line": "The prompt is the spec — writing one precisely is product definition, not a party trick.",
+      "lessons": [
+        {"id": "10.1", "t": "The Prompt Is the Spec"},
+        {"id": "10.2", "t": "Prompt Patterns & Iteration"}
+      ]
+    },
+    {
+      "n": "11",
+      "title": "AI Product Improvement Loops",
+      "through_line": "AI products improve by closing the eval loop from user feedback to iteration, not by waiting for a bigger model.",
+      "lessons": [
+        {"id": "11.1", "t": "Eval-driven Iteration"},
+        {"id": "11.2", "t": "The Data Flywheel"}
+      ]
+    },
+    {
+      "n": "12",
+      "title": "Customer Comms & GTM for AI",
+      "through_line": "You sell a probability, not a guarantee — set expectations honestly or churn punishes you later.",
+      "lessons": [
+        {"id": "12.1", "t": "Selling Probabilistic Outcomes Honestly"}
+      ]
+    },
+    {
+      "n": "13",
+      "title": "AI PM Case Interviews",
+      "through_line": "The 2026 AI PM case rewards system-mapping and tradeoff-naming over feature brainstorming.",
+      "lessons": [
+        {"id": "13.1", "t": "The 2026 AI PM Case Framework"},
+        {"id": "13.2", "t": "Worked Case: Design an AI Agent / Product"},
+        {"id": "13.3", "t": "Worked Case: Fix a Broken RAG Product + a Metrics Case"}
+      ]
+    },
+    {
+      "n": "14",
+      "title": "Portfolio & Positioning for 2026 Roles",
+      "through_line": "One shipped artifact beats ten bullet points — reading sharpens you, but a portfolio piece gets you hired.",
+      "lessons": [
+        {"id": "14.1", "t": "Positioning Yourself for AI PM Roles in 2026"},
+        {"id": "14.2", "t": "Building the One Artifact That Gets You Hired"},
+        {"id": "14.3", "t": "The 30-Day Plan: From Reading to Offer"}
+      ]
+    },
+    {
+      "n": "15",
+      "title": "The Case Lab — 10 Real Product Teardowns",
+      "through_line": "Frameworks are theory until you run them on a real product; this is where you practice applying them on demand.",
+      "lessons": [
+        {"id": "15.1", "t": "Cursor — When 'Cheap Per Task' Lied"},
+        {"id": "15.2", "t": "Perplexity — Retrieval as the Moat"},
+        {"id": "15.3", "t": "Lovable — Speed-to-Demo as a Wedge"},
+        {"id": "15.4", "t": "v0 — A Narrow Wedge With Built-in Distribution"},
+        {"id": "15.5", "t": "Bolt.new — In-Browser Execution as the Bet"},
+        {"id": "15.6", "t": "Granola — One Workflow, Done Extremely Well"},
+        {"id": "15.7", "t": "Gamma — Selling Time-to-Output"},
+        {"id": "15.8", "t": "ElevenLabs — Quality Bar as the Product"},
+        {"id": "15.9", "t": "Cluely — Positioning, Virality & the Ethics Line"},
+        {"id": "15.10", "t": "Replit Agent — Autonomy and the Leash"}
+      ]
+    }
+  ]
+}

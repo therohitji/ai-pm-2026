@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI PM by Rohit Swerashi — Full Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-ui:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-serif:'Newsreader','Iowan Old Style',Georgia,serif;
+    --font-mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+    --bg:#ffffff; --bg-soft:#f5f5f7; --bg-rail:#fbfbfd;
+    --ink:#1d1d1f; --ink-soft:#48484a; --ink-mute:#86868b;
+    --line:rgba(0,0,0,0.09); --line-strong:rgba(0,0,0,0.16);
+    --accent:#0071e3; --accent-soft:rgba(0,113,227,0.08); --accent-line:rgba(0,113,227,0.22);
+    --warn:#b25000; --warn-soft:#fff6ee; --good:#0a7d3c; --good-soft:#f0faf3;
+    --rail-w:296px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.72;letter-spacing:-.003em;}
+
+  .rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail-w);background:var(--bg-rail);border-right:1px solid var(--line);overflow-y:auto;z-index:50;padding-bottom:40px;}
+  .rail::-webkit-scrollbar{width:6px;} .rail::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:3px;}
+  .rail-brand{padding:26px 24px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg-rail);z-index:2;}
+  .rail-brand .kicker{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);}
+  .rail-brand h1{font-family:var(--font-ui);font-size:19px;font-weight:800;letter-spacing:-.02em;margin-top:4px;line-height:1.15;}
+  .rail-brand .by{font-family:var(--font-ui);font-size:12px;color:var(--ink-mute);margin-top:5px;font-weight:500;}
+  .rail-progress{padding:14px 24px 8px;font-family:var(--font-ui);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink-mute);text-transform:uppercase;}
+  .pbar{height:4px;background:var(--bg-soft);border-radius:2px;margin-top:8px;overflow:hidden;}
+  .pbar i{display:block;height:100%;width:__PROGRESS__%;background:var(--accent);border-radius:2px;}
+
+  .chap{border-bottom:1px solid var(--line);}
+  .chap-head{display:flex;align-items:center;gap:10px;padding:13px 24px;cursor:pointer;font-family:var(--font-ui);user-select:none;transition:background .15s;}
+  .chap-head:hover{background:var(--bg-soft);}
+  .chap-head .tw{font-size:11px;color:var(--ink-mute);transition:transform .2s;width:10px;flex:none;}
+  .chap.open .chap-head .tw{transform:rotate(90deg);}
+  .chap-head .cnum{font-size:11px;font-weight:700;color:var(--accent);font-family:var(--font-mono);flex:none;}
+  .chap-head .ctitle{font-size:13.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.25;}
+  .chap-head.locked .ctitle{color:var(--ink-mute);}
+  .chap-head .lock{margin-left:auto;font-size:10px;color:var(--ink-mute);font-family:var(--font-ui);font-weight:600;flex:none;}
+  .chap-head .done{margin-left:auto;font-size:10px;color:var(--good);font-family:var(--font-ui);font-weight:700;flex:none;}
+  .lessons{display:none;padding:2px 0 8px;} .chap.open .lessons{display:block;}
+  .les{display:flex;gap:10px;align-items:baseline;padding:8px 24px 8px 46px;cursor:pointer;font-family:var(--font-ui);font-size:13px;color:var(--ink-soft);line-height:1.3;transition:background .12s,color .12s;border-left:2px solid transparent;}
+  .les:hover{background:var(--bg-soft);color:var(--ink);}
+  .les.active{background:var(--accent-soft);border-left:2px solid var(--accent);color:var(--ink);font-weight:600;}
+  .les .lnum{font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);flex:none;width:28px;} .les.active .lnum{color:var(--accent);}
+  .les.soon{color:var(--ink-mute);}
+  .les .tag{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);background:var(--bg-soft);padding:2px 6px;border-radius:4px;flex:none;align-self:center;}
+  .les.live .tag{color:var(--good);background:var(--good-soft);}
+  .les.donel .tag{color:var(--ink-mute);background:var(--bg-soft);}
+
+  .main{margin-left:var(--rail-w);min-height:100vh;}
+  .topbar{position:sticky;top:0;background:rgba(255,255,255,0.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);z-index:40;display:flex;align-items:center;gap:14px;padding:0 40px;height:54px;}
+  .topbar .crumb{font-family:var(--font-ui);font-size:12.5px;color:var(--ink-mute);font-weight:500;}
+  .topbar .crumb b{color:var(--ink);font-weight:600;}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-strong);width:34px;height:34px;border-radius:8px;font-size:15px;cursor:pointer;}
+  .wrap{max-width:720px;margin:0 auto;padding:58px 40px 140px;}
+
+  .les-kicker{font-family:var(--font-ui);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .les-title{font-family:var(--font-ui);font-weight:800;font-size:46px;line-height:1.04;letter-spacing:-.035em;margin:14px 0 18px;}
+  .les-meta{display:flex;flex-wrap:wrap;gap:8px 10px;margin-bottom:14px;}
+  .pill{font-family:var(--font-ui);font-size:11.5px;font-weight:600;color:var(--ink-soft);background:var(--bg-soft);border:1px solid var(--line);padding:4px 11px;border-radius:100px;}
+  .motto{font-family:var(--font-serif);font-style:italic;font-size:22px;line-height:1.5;color:var(--ink-soft);border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:28px 0 10px;}
+
+  .wrap h2{font-family:var(--font-ui);font-weight:800;font-size:15.5px;letter-spacing:.045em;text-transform:uppercase;color:var(--ink);margin:50px 0 14px;padding-top:30px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;}
+  .wrap h2 .ix{font-family:var(--font-mono);font-size:12px;color:#fff;background:var(--ink);width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-weight:600;}
+  .wrap h2 + .sub{font-family:var(--font-ui);font-size:13.5px;color:var(--ink-mute);margin:-4px 0 20px;font-weight:500;}
+  .wrap h3{font-family:var(--font-ui);font-weight:700;font-size:18px;letter-spacing:-.01em;margin:32px 0 8px;color:var(--ink);}
+  .wrap p{margin:0 0 18px;color:#2c2c31;line-height:1.72;} .wrap p.lead{font-size:20px;line-height:1.62;color:var(--ink-soft);font-weight:400;margin-bottom:22px;}
+  .wrap strong{font-weight:600;color:var(--ink);}
+  .wrap em.k{font-style:normal;background:var(--accent-soft);color:#0058b0;padding:1px 6px;border-radius:5px;font-size:.92em;font-family:var(--font-ui);font-weight:600;}
+  .wrap ul,.wrap ol{margin:4px 0 18px 4px;padding-left:24px;} .wrap li{margin:10px 0;padding-left:6px;line-height:1.7;}
+  .wrap a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-line);} .wrap a:hover{border-bottom-color:var(--accent);}
+
+  .callout{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:24px 0;background:var(--bg-rail);}
+  .callout .ch{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px;}
+  .callout.warn{background:var(--warn-soft);border-color:#f0d8c2;} .callout.warn .ch{color:var(--warn);}
+  .callout.good{background:var(--good-soft);border-color:#cfe9d8;} .callout.good .ch{color:var(--good);}
+  .callout.accent{background:var(--accent-soft);border-color:var(--accent-line);} .callout.accent .ch{color:#0058b0;}
+  .callout p:first-of-type{margin-top:0;} .callout p:last-child{margin-bottom:0;}
+
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-family:var(--font-ui);font-size:14px;}
+  th{text-align:left;font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink);padding:11px 14px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+  td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.55;}
+  td strong{color:var(--ink);} tr:last-child td{border-bottom:none;}
+
+  .flow{font-family:var(--font-mono);font-size:12px;background:var(--ink);color:#e8e8ed;border-radius:14px;padding:24px 26px;margin:24px 0;line-height:1.75;overflow-x:auto;}
+  .flow .st{color:#6db1ff;font-weight:600;} .flow .ar{color:#86868b;} .flow .nt{color:#9fe0b0;}
+
+  .fig{margin:26px 0;border:1px solid var(--line);border-radius:14px;padding:22px 22px 14px;background:var(--bg-rail);}
+  .fig svg{display:block;width:100%;height:auto;}
+  .fig-title{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:16px;text-align:center;}
+  .fig-cap{font-family:var(--font-ui);font-size:12px;color:var(--ink-mute);text-align:center;margin-top:14px;line-height:1.45;}
+
+  .quiz{border:1px solid var(--line);border-radius:14px;padding:24px;margin:26px 0;background:var(--bg-rail);}
+  .quiz .q{font-family:var(--font-ui);font-weight:700;font-size:16px;margin-bottom:14px;}
+  .opt{font-family:var(--font-ui);font-size:14px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;display:flex;gap:10px;transition:.12s;color:var(--ink-soft);}
+  .opt:hover{border-color:var(--line-strong);background:var(--bg-soft);}
+  .opt .l{font-family:var(--font-mono);font-weight:600;color:var(--ink-mute);flex:none;}
+  .opt.right{border-color:var(--good);background:var(--good-soft);color:var(--ink);}
+  .opt.wrong{border-color:#e0a0a0;background:#fdf2f2;color:var(--ink);}
+  .qexp{font-family:var(--font-ui);font-size:13.5px;color:var(--ink-soft);margin-top:12px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;display:none;line-height:1.5;} .qexp.show{display:block;}
+
+  .soon-wrap{max-width:680px;margin:0 auto;padding:90px 40px;text-align:center;}
+  .soon-wrap .big{font-family:var(--font-ui);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .soon-wrap h2{font-family:var(--font-ui);font-size:36px;font-weight:800;letter-spacing:-.03em;margin:14px 0 8px;border:none;text-transform:none;display:block;}
+  .soon-wrap .scope{text-align:left;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:30px;background:var(--bg-rail);}
+  .soon-wrap .scope .ch{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px;}
+  .soon-wrap .scope li{font-family:var(--font-body);margin:10px 0;color:var(--ink-soft);}
+
+  .footer-nav{display:flex;justify-content:space-between;gap:14px;margin-top:70px;padding-top:28px;border-top:1px solid var(--line);}
+  .fnav{font-family:var(--font-ui);font-size:13px;border:1px solid var(--line);border-radius:12px;padding:14px 18px;cursor:pointer;flex:1;transition:.15s;background:var(--bg);}
+  .fnav:hover{border-color:var(--accent);background:var(--accent-soft);}
+  .fnav .d{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:700;}
+  .fnav .t{font-weight:600;color:var(--ink);margin-top:3px;} .fnav.next{text-align:right;} .fnav.ghost{visibility:hidden;}
+
+  .scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:45;}
+  @media(max-width:980px){
+    .rail{transform:translateX(-100%);transition:transform .25s;box-shadow:0 0 40px rgba(0,0,0,.12);}
+    .rail.open{transform:translateX(0);} .main{margin-left:0;}
+    .menu-btn{display:inline-flex;align-items:center;justify-content:center;} .scrim.open{display:block;}
+    .wrap{padding:40px 22px 110px;} .les-title{font-size:34px;} .topbar{padding:0 18px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail">
+  <div class="rail-brand">
+    <div class="kicker">The Course</div>
+    <h1>AI Product Management</h1>
+    <div class="by">by Rohit Swerashi · 2026 edition</div>
+  </div>
+  <div class="rail-progress">Your progress
+    <div class="pbar"><i></i></div>
+  </div>
+  <div id="nav"></div>
+</nav>
+<div class="scrim" id="scrim"></div>
+
+<div class="main">
+  <div class="topbar">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="crumb" id="crumb">Chapter 3 · <b>How It Works Under the Hood</b></div>
+  </div>
+  <div id="view"></div>
+</div>
+
+<script>
+/* ============================ COURSE MAP ============================ */
+__COURSE__
+
+function nav(prev,next){
+  const p = prev ? `<div class="fnav" onclick="load('${prev[0]}')"><div class="d">Previous</div><div class="t">← ${prev[0]} · ${prev[1]}</div></div>` : `<div class="fnav ghost"></div>`;
+  const n = next ? `<div class="fnav next" onclick="load('${next[0]}')"><div class="d">Next</div><div class="t">${next[0]} · ${next[1]} →</div></div>` : `<div class="fnav ghost"></div>`;
+  return `<div class="footer-nav">${p}${n}</div>`;
+}
+
+/* ============================ LESSON CONTENT ============================ */
+const LESSONS = {
+__LESSONS__
+};
+
+/* recap cards for completed chapters (live in their own artifact) */
+const RECAP = {};
+
+/* scope for not-yet-written lessons */
+const SCOPE = {
+"4.3":["Build now, wait for the next model, or don't build it","The 'will the next model eat this?' test","Worked case: sizing an AI opportunity honestly"],
+"6.1":["Roadmapping when the base model changes under you","Betting on model trajectory vs building durable moats","Worked case: a 2-quarter AI roadmap"],
+"6.2":["Adapting RICE / impact-effort for probabilistic features","When effort includes eval cost and confidence is model reliability","Worked case: sequencing AI bets around model releases"],
+"6.3":["Your roadmap rides on a vendor's model — de-risk it","Provider fallback, abstraction, owning data and distribution","Worked case: surviving a model deprecation or price change"],
+"7.1":["Writing a PRD for a non-deterministic feature","Specifying quality bars, evals, and failure behavior","Worked case: a real AI PRD, annotated"],
+"7.2":["Speccing the eval set and the acceptable error rate","'Definition of done' for a feature that is never 100%","Worked case: eval-driven acceptance criteria"],
+"8.1":["Talking to ML engineers without faking expertise","The questions that earn respect","Worked case: a tense eng/PM disagreement, resolved"],
+"9.1":["What v0, Lovable, Cursor, and Claude each do best","Which prototyping tool to reach for, and when","Worked case: choosing the right tool for a demo"],
+"9.2":["Idea to clickable AI prototype in a day","What to delegate to the tool vs decide yourself","Worked case: a PM-built prototype that won buy-in"],
+"9.3":["What a vibe-coded demo hides: scaling, cost, failure","Not promising production from a prototype","Worked case: a demo-to-scale reality check"],
+"10.1":["The prompt as a product spec","Turning a fuzzy requirement into a precise prompt","Why prompt-writing is product definition, not a trick"],
+"10.2":["Reusable patterns: examples, format, role, step-by-step","Iterating a prompt against evals","Worked case: hardening a fuzzy prompt"],
+"11.1":["Eval-driven iteration loops","Closing the loop from feedback to improvement","Worked case: an improvement sprint for an AI feature"],
+"11.2":["How usage generates the data that improves the product","Designing feedback capture so the flywheel turns","Worked case: a real data-moat improvement loop"],
+"12.1":["Selling probabilistic outcomes honestly","Setting expectations without underselling","Worked case: GTM messaging for an AI product"],
+"13.1":["The repeatable 2026 AI PM case framework","Map system, find the bottleneck, name the tradeoff, define the metric","Why structure beats feature brainstorming"],
+"13.2":["A full mock case solved end-to-end: design an AI agent","Reusing the Chapter 2 agent frameworks","From prompt to metric, the way an interviewer wants"],
+"13.3":["Two more case types: fix a broken RAG product, plus a metrics case","Reusing the Chapter 1 and Chapter 5 frameworks","Diagnosing live, out loud"],
+"14.1":["How to frame your experience for AI PM roles","What AI-first companies actually screen for in 2026","Worked case: an AI PM positioning story"],
+"14.2":["The prototype plus written teardown that proves you can do the job","Using your Chapter 9 vibe-coding skills","Worked case: the portfolio piece, built"],
+"14.3":["A week-by-week plan from reading to offer","Turning this course into a job","Honest: this is the payoff; the rest is setup"],
+};
+
+/* ============================ RENDER ============================ */
+const navEl=document.getElementById('nav');
+const ORDER=[]; COURSE.forEach(c=>c.lessons.forEach(l=>ORDER.push([l.id,l.t,l.state])));
+let active="__ACTIVE__";
+
+function buildNav(){
+  navEl.innerHTML="";
+  COURSE.forEach((c,ci)=>{
+    const chap=document.createElement('div');
+    chap.className="chap"+(c.open?" open":"");
+    let badge=''; if(c.done) badge='<span class="done">✓ done</span>'; else if(c.locked) badge='<span class="lock">soon</span>';
+    chap.innerHTML=`
+      <div class="chap-head ${c.locked?'locked':''}" data-ci="${ci}">
+        <span class="tw">▶</span><span class="cnum">${c.n}</span>
+        <span class="ctitle">${c.title}</span>${badge}
+      </div>
+      <div class="lessons">
+        ${c.lessons.map(l=>{
+          const cls=l.state==='done'?'donel':l.state;
+          const tag=l.state==='live'?'live':(l.state==='done'?'done':'soon');
+          return `<div class="les ${cls} ${l.id===active?'active':''}" data-id="${l.id}">
+            <span class="lnum">${l.id}</span><span>${l.t}</span>
+            <span class="tag">${tag}</span></div>`;}).join('')}
+      </div>`;
+    navEl.appendChild(chap);
+  });
+  bind();
+}
+function bind(){
+  document.querySelectorAll('.chap-head').forEach(h=>{ h.onclick=()=>h.parentElement.classList.toggle('open'); });
+  document.querySelectorAll('.les').forEach(l=>{ l.onclick=()=>{ load(l.dataset.id); if(window.innerWidth<=980) closeRail(); }; });
+}
+function navFor(id){
+  const i=ORDER.findIndex(x=>x[0]===id);
+  const prev=i>0?ORDER[i-1]:null, next=i<ORDER.length-1?ORDER[i+1]:null;
+  return nav(prev?[prev[0],prev[1]]:null, next?[next[0],next[1]]:null);
+}
+function load(id){
+  active=id;
+  const view=document.getElementById('view');
+  let chapTitle="",num="";
+  COURSE.forEach(c=>c.lessons.forEach(l=>{ if(l.id===id){chapTitle=c.title;num=c.n;}}));
+  document.getElementById('crumb').innerHTML = (num==='00') ? `<b>${chapTitle}</b>` : `Chapter ${num} · <b>${chapTitle}</b>`;
+  if(LESSONS[id]){
+    view.innerHTML=LESSONS[id].replace('__NAV__', navFor(id));
+    bindQuiz();
+  } else if(RECAP[id]){
+    view.innerHTML=`<div class="soon-wrap">
+      <div class="big" style="color:var(--good)">✓ Chapter 1 · Lesson ${id}</div>
+      <h2>${RECAP[id][0]}</h2>
+      <p style="color:var(--ink-soft);font-size:19px;">${RECAP[id][1]}</p>
+      <div class="scope"><div class="ch">Where to read it in full</div>
+        <p style="font-family:var(--font-body);color:var(--ink-soft);margin:0;">This lesson lives in the <strong>Chapter 1 artifact</strong> with its diagrams, worked solution, and industry case. Open that file to study it fully.</p></div>
+    </div>`;
+  } else {
+    const sc=SCOPE[id]||["Detailed content ships in the next drop."];
+    let t="";COURSE.forEach(c=>c.lessons.forEach(l=>{if(l.id===id)t=l.t;}));
+    view.innerHTML=`<div class="soon-wrap">
+      <div class="big">Lesson ${id} · Ships next</div>
+      <h2>${t}</h2>
+      <p style="color:var(--ink-soft);font-size:19px;">This lesson isn't written yet — and it won't ship as filler. Here's exactly what it will cover when it drops:</p>
+      <div class="scope"><div class="ch">Planned scope</div><ul>${sc.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <p style="color:var(--ink-mute);font-size:14px;font-family:var(--font-ui);margin-top:24px;">Tell Claude "next" to generate this lesson at full depth.</p>
+    </div>`;
+  }
+  document.querySelectorAll('.les').forEach(l=>l.classList.toggle('active',l.dataset.id===id));
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function bindQuiz(){
+  document.querySelectorAll('.quiz').forEach(q=>{
+    const correct=+q.dataset.correct;
+    q.querySelectorAll('.opt').forEach(o=>{
+      o.onclick=()=>{
+        if(q.dataset.done)return; q.dataset.done=1;
+        const i=+o.dataset.i;
+        if(i===correct){o.classList.add('right');}
+        else{o.classList.add('wrong');q.querySelector(`[data-i="${correct}"]`).classList.add('right');}
+        q.querySelector('.qexp').classList.add('show');
+      };
+    });
+  });
+}
+const rail=document.getElementById('rail'),scrim=document.getElementById('scrim');
+document.getElementById('menuBtn').onclick=()=>{rail.classList.add('open');scrim.classList.add('open');};
+function closeRail(){rail.classList.remove('open');scrim.classList.remove('open');}
+scrim.onclick=closeRail;
+
+buildNav();
+load("__ACTIVE__");
+</script>
+</body>
+</html>

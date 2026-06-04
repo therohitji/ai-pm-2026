@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hustlers Fellowship — Build-first AI courses</title>
+<meta name="description" content="Practical, build-first AI courses by Rohit Swerashi (Founder, GeniOS). Start with AI Product Management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400..500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-ui:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-serif:'Newsreader','Iowan Old Style',Georgia,serif;
+    --bg:#ffffff; --bg-soft:#f5f5f7; --bg-rail:#fbfbfd;
+    --ink:#1d1d1f; --ink-soft:#48484a; --ink-mute:#86868b;
+    --line:rgba(0,0,0,0.09); --line-strong:rgba(0,0,0,0.16);
+    --accent:#9e1b32; --accent-deep:#7a1226; --accent-soft:rgba(158,27,50,0.08); --accent-line:rgba(158,27,50,0.22);
+    --accent-grad:linear-gradient(135deg,#bb1f3c 0%,#6f1020 100%); --accent-grad-deep:linear-gradient(135deg,#a51833 0%,#5e0d1b 100%);
+    --good:#0a7d3c; --good-soft:#f0faf3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);font-size:17px;line-height:1.6;letter-spacing:-.003em;position:relative;}
+  body::before{content:"";position:fixed;top:0;left:0;right:0;height:560px;z-index:-1;pointer-events:none;
+    background:radial-gradient(1100px 380px at 50% -130px, rgba(158,27,50,0.08), transparent 72%);}
+
+  .shell{max-width:1000px;margin:0 auto;padding:0 32px;}
+
+  /* ---- top bar ---- */
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:24px 0 0;}
+  .brand{font-weight:800;font-size:16px;letter-spacing:-.01em;}
+  .brand .dot{color:var(--accent);}
+  .li-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-soft);border:1px solid var(--line);padding:7px 13px;border-radius:100px;text-decoration:none;transition:.16s;background:#fff;}
+  .li-link svg{color:var(--accent);flex:none;}
+  .li-link .arr{color:var(--ink-mute);font-weight:500;}
+  .li-link:hover{border-color:var(--accent-line);color:var(--accent);background:var(--accent-soft);}
+  .li-link:hover .arr{color:var(--accent);}
+
+  /* ---- hero ---- */
+  .hero{padding:74px 0 12px;max-width:780px;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);}
+  h1{font-size:56px;font-weight:800;letter-spacing:-.038em;line-height:1.02;margin:16px 0 0;}
+  .hero .sub{font-size:20px;line-height:1.55;color:var(--ink-soft);margin-top:20px;font-weight:400;max-width:680px;}
+  .hero .quote{font-family:var(--font-serif);font-style:italic;font-size:19px;color:var(--ink-soft);border-left:3px solid var(--accent);padding:3px 0 3px 18px;margin-top:26px;}
+
+  /* ---- section label ---- */
+  .sec-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:60px 0 18px;display:flex;align-items:center;gap:14px;}
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* ---- courses ---- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .card{border:1px solid var(--line);border-radius:20px;padding:30px 30px 28px;background:var(--bg-rail);transition:border-color .16s,box-shadow .16s,transform .16s;}
+  .card.live{grid-column:1 / -1;background:#fff;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.02);}
+  .card.live:hover{border-color:var(--accent-line);box-shadow:0 18px 46px rgba(126,18,38,.14);transform:translateY(-3px);}
+  .card.soon{opacity:.94;}
+
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 11px;border-radius:100px;}
+  .tag.now{color:var(--good);background:var(--good-soft);}
+  .tag.soon{color:var(--ink-mute);background:var(--bg-soft);}
+  .tag .pulse{width:6px;height:6px;border-radius:50%;background:var(--good);display:inline-block;}
+  .freenote{font-size:12.5px;color:var(--ink-mute);font-weight:500;}
+
+  .card h2{font-size:27px;font-weight:800;letter-spacing:-.022em;margin:16px 0 4px;line-height:1.1;}
+  .card .lede{font-size:15.5px;font-weight:600;color:var(--accent);margin-bottom:12px;}
+  .card.soon h2{color:var(--ink-soft);}
+  .card.soon .edition{font-size:13px;color:var(--ink-mute);font-weight:600;margin-bottom:10px;}
+  .card p{font-size:15px;line-height:1.62;color:var(--ink-soft);margin-bottom:18px;max-width:66ch;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .chip{font-size:11.5px;font-weight:600;color:var(--ink-soft);background:var(--bg-soft);border:1px solid var(--line);padding:5px 12px;border-radius:100px;}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent-grad);color:#fff;font-weight:700;font-size:15px;padding:13px 24px;border-radius:12px;text-decoration:none;transition:.16s;box-shadow:0 8px 20px rgba(126,18,38,.28);}
+  .btn .arr{transition:transform .16s;}
+  .btn:hover{background:var(--accent-grad-deep);box-shadow:0 14px 30px rgba(126,18,38,.38);transform:translateY(-1px);}
+  .card.live:hover .btn .arr,.btn:hover .arr{transform:translateX(4px);}
+  .soon-note{font-size:13px;color:var(--ink-mute);font-weight:600;}
+
+  /* ---- follow + footer ---- */
+  .follow{margin:34px 0 0;text-align:center;font-size:14.5px;color:var(--ink-mute);}
+  .follow a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent-line);}
+  .follow a:hover{border-bottom-color:var(--accent);}
+  footer{margin:46px 0 48px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:var(--ink-mute);}
+  footer b{color:var(--ink-soft);font-weight:600;}
+  footer a{color:var(--ink-soft);text-decoration:none;font-weight:600;border-bottom:1px solid var(--line);}
+  footer a:hover{color:var(--accent);border-bottom-color:var(--accent-line);}
+
+  @media(max-width:760px){
+    .shell{padding:0 20px;}
+    h1{font-size:38px;}
+    .hero{padding:48px 0 6px;}
+    .hero .sub{font-size:18px;}
+    .grid{grid-template-columns:1fr;}
+    .topbar{flex-direction:column;align-items:flex-start;gap:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="topbar">
+    <div class="brand">Hustlers Fellowship<span class="dot">.</span></div>
+    <a class="li-link" href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Rohit Swerashi <span class="arr">↗</span>
+    </a>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">The Fellowship · by Rohit Swerashi, Founder of GeniOS</div>
+    <h1>The AI career, made practical.</h1>
+    <p class="sub">Build-first field guides — not theory — that turn into a real portfolio and a real job. New courses dropping through 2026.</p>
+    <p class="quote">Reading sharpens you; a shipped artifact gets you hired.</p>
+  </header>
+
+  <div class="sec-label">Courses</div>
+
+  <div class="grid">
+
+    <div class="card live" onclick="location.href='ai-pm-2026/ai-pm-course-master.html'">
+      <div class="card-head">
+        <span class="tag now"><span class="pulse"></span>Available now</span>
+        <span class="freenote">Opens instantly · no signup</span>
+      </div>
+      <h2>AI Product Management</h2>
+      <div class="lede">Become a hire-ready AI PM — by building, not memorizing.</div>
+      <p>The technical spine (system design, agents, and the data structures under AI), the craft (research, metrics, PRDs, prototyping, prompting, GTM), and the get-hired playbook (case interviews + a portfolio artifact) — closing with a Case Lab of ten real product teardowns. Every lesson ends with a rep you attempt yourself.</p>
+      <div class="meta-row">
+        <span class="chip">15 chapters</span>
+        <span class="chip">45 lessons</span>
+        <span class="chip">10 real teardowns</span>
+        <span class="chip">Apply-it-yourself reps</span>
+        <span class="chip">2026 edition</span>
+      </div>
+      <a class="btn" href="ai-pm-2026/ai-pm-course-master.html">Start the course <span class="arr">→</span></a>
+    </div>
+
+    <div class="card soon">
+      <div class="card-head"><span class="tag soon">Coming soon</span></div>
+      <h2>AI Program Manager</h2>
+      <div class="edition">2026</div>
+      <p>Run AI programs end to end — delivery, risk, evals as gates, and cross-team execution when the model keeps changing under you.</p>
+      <span class="soon-note">Dropping soon →</span>
+    </div>
+
+    <div class="card soon">
+      <div class="card-head"><span class="tag soon">Coming soon</span></div>
+      <h2>AI Full-Stack</h2>
+      <div class="edition">2026</div>
+      <p>Build and ship AI products end to end — from model and retrieval to the interface users actually touch.</p>
+      <span class="soon-note">Dropping soon →</span>
+    </div>
+
+  </div>
+
+  <p class="follow">New courses drop here through 2026 — <a href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">follow Rohit on LinkedIn</a> to hear first.</p>
+
+  <footer>
+    <span>© 2026 <b>Hustlers Fellowship</b> · a Rohit Swerashi project</span>
+    <span><a href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">LinkedIn</a> · Built for builders · GeniOS</span>
+  </footer>
+
+</div>
+</body>
+</html>

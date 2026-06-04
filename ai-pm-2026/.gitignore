@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs & temp
+*.log
+tmp/
+.tmp/
+
+# Dependencies (if any tooling is added later)
+node_modules/
