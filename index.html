@@ -36,6 +36,7 @@
   .li-link .arr{color:var(--ink-mute);font-weight:500;}
   .li-link:hover{border-color:var(--accent-line);color:var(--accent);background:var(--accent-soft);}
   .li-link:hover .arr{color:var(--accent);}
+  .social{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 
   /* ---- hero ---- */
   .hero{padding:74px 0 12px;max-width:780px;}
@@ -43,6 +44,10 @@
   h1{font-size:56px;font-weight:800;letter-spacing:-.038em;line-height:1.02;margin:16px 0 0;}
   .hero .sub{font-size:20px;line-height:1.55;color:var(--ink-soft);margin-top:20px;font-weight:400;max-width:680px;}
   .hero .quote{font-family:var(--font-serif);font-style:italic;font-size:19px;color:var(--ink-soft);border-left:3px solid var(--accent);padding:3px 0 3px 18px;margin-top:26px;}
+  .follow-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;}
+  .fbtn{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line-strong);padding:11px 18px;border-radius:11px;text-decoration:none;transition:.16s;background:#fff;}
+  .fbtn svg{flex:none;}
+  .fbtn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 6px 18px rgba(126,18,38,.10);transform:translateY(-1px);}
 
   /* ---- section label ---- */
   .sec-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:60px 0 18px;display:flex;align-items:center;gap:14px;}
@@ -100,10 +105,16 @@
 
   <div class="topbar">
     <div class="brand">Hustlers Fellowship<span class="dot">.</span></div>
-    <a class="li-link" href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-      Rohit Swerashi <span class="arr">↗</span>
-    </a>
+    <div class="social">
+      <a class="li-link" href="https://github.com/therohitji/ai-pm-2026" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.84 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.24 2.86.12 3.16.77.83 1.24 1.88 1.24 3.17 0 4.54-2.81 5.53-5.49 5.83.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .31.21.68.83.56A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+        GitHub <span class="arr">↗</span>
+      </a>
+      <a class="li-link" href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        Rohit Swerashi <span class="arr">↗</span>
+      </a>
+    </div>
   </div>
 
   <header class="hero">
@@ -111,6 +122,16 @@
     <h1>The AI career, made practical.</h1>
     <p class="sub">Build-first field guides — not theory — that turn into a real portfolio and a real job. New courses dropping through 2026.</p>
     <p class="quote">Reading sharpens you; a shipped artifact gets you hired.</p>
+    <div class="follow-row">
+      <a class="fbtn fbtn-star" href="https://github.com/therohitji/ai-pm-2026" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2l2.95 5.98 6.6.96-4.78 4.66 1.13 6.57L12 17.98l-5.9 3.1 1.13-6.57L2.45 8.94l6.6-.96L12 2z"/></svg>
+        Star on GitHub
+      </a>
+      <a class="fbtn" href="https://www.linkedin.com/in/rohitswerashi/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+        Follow on LinkedIn
+      </a>
+    </div>
   </header>
 
   <div class="sec-label">Courses</div>
