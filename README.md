@@ -1,4 +1,4 @@
-# Hustlers Fellowship
+# AI-PM-2026 (Playbook)
 
 Build-first AI courses by **Rohit Swerashi** (Founder, GeniOS). Live at **hustlersfellowship.com**.
 
