@@ -1,3 +1,44 @@
+<!-- presentation:start -->
+<p align="center"><img src="https://raw.githubusercontent.com/therohitji/therohitji/main/repos/ai-pm-2026.svg" width="100%" alt="AI Product Management. A build-first course that makes you a hire-ready AI Product Manager. 14,531 Lines of code, 30 Files, 2 Code areas, 4 Languages."></p>
+
+**Live:** https://hustlersfellowship.com/aipm
+
+## What it is
+
+The curriculum, lessons, figures and build script of the course.
+
+## Why it exists
+
+An interviewer wants to see a portfolio artifact, not a certificate.
+
+## How it works
+
+```mermaid
+flowchart LR
+  n0["Technical spine"]
+  n1["PM craft"]
+  n2["Get-hired playbook"]
+  n3["Portfolio artifact"]
+  n0 --> n1 --> n2 --> n3
+```
+
+## What's inside
+
+| Part | What |
+|---|---|
+| **Size** | 15 chapters, 45 lessons |
+| **Cases** | 10 real teardowns |
+| **Outcome** | A portfolio artifact |
+
+**Stack:** HTML, JavaScript, Python
+
+---
+
+Built by [Rohit Swerashi](https://github.com/therohitji), Founder & CEO of [GeniOS](https://thegenios.com).
+<!-- presentation:end -->
+
+## Full documentation
+
 # AI Product Management (2026)
 
 A build-first course that makes you a hire-ready AI Product Manager by building, not memorizing. By **Rohit Swerashi**, founder of GeniOS, taught through the **Hustlers Fellowship**.
